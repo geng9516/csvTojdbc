@@ -79,19 +79,18 @@ public class Jdbc {
 
     public List<Company> selectUserinfo() throws SQLException {
         List<Company> list = new ArrayList<>();
-        Company com = new Company();
-        String sql = "select * from userinfo where id = " + com.getID();
+        String sql = "select * from userinfo";
 
         rs = stmt.executeQuery(sql);
         if (rs != null) {
             while (rs.next()) {
 
+                Company com = new Company();
                 com.setID(rs.getString(1));
                 com.setKatagaki(rs.getString(2));
                 com.setName(rs.getString(3));
                 com.setEmail(rs.getString(4));
                 list.add(com);
-           
             }
         }
         return list;
@@ -100,11 +99,13 @@ public class Jdbc {
 
     public int userinfoId(int res) throws SQLException {
         String sql = "select * from userinfo where id = " + res;
-
+        System.out.println(sql);
         rs = stmt.executeQuery(sql);
         int result = 0;
         if (rs != null) {
-            result = 1;
+            while (rs.next()) {
+                return result = 1;
+            }
         }
         return 0;
     }
